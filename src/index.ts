@@ -6,6 +6,10 @@ const app = express();
 
 //Routes Express;
 
+app.get('/user/:user', Routes.getUser);
+app.get('/users', Routes.getUser);
+app.post('/user/:user', Routes.storeUser);
+app.get('/delete/:user', Routes.deleteUser);
 app.get('*', Routes.err400);
 
 var port = dotenv.parsed.PORT_ALT;
