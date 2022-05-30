@@ -1,6 +1,10 @@
 #!/bin/bash
 whiptail --title "Instalação LovelyStay" --msgbox "Aperte ENTER para iniciar a instalação do Test LovelyStay" --fb 10 70
+
 yarn
+yarn build
+yarn buildInstall
+
 whiptail --title "Vamos Iniciar a configuração do seu banco de dados" --msgbox "Aperte ENTER para continuar" --fb 10 70
     host=$(whiptail --title "Qual HOST do seu banco de dados?" --inputbox "Digite o HOST :" --fb 10 80 3>&1 1>&2 2>&3)
     port=$(whiptail --title "Qual PORTA do seu banco de dados?" --inputbox "Digite a PORTA :" --fb 10 60 3>&1 1>&2 2>&3)
@@ -15,20 +19,21 @@ whiptail --title "Ambiente" --msgbox "Vamos agora configurar as variaveis que de
 
 ###### SALVO .ENV
 
-echo 'HOST="'$host'"
-PORT='$port'
-DB="'$dbname'"
-USER="'$user'"
-PASS="'$pass'"
-MAX='$max'
-PORT_ALT='$portAlt'
-AMB="'$AMB'"' >> ./.env
+# echo 'HOST="'$host'"
+# PORT='$port'
+# DB="'$dbname'"
+# USER="'$user'"
+# PASS="'$pass'"
+# MAX='$max'
+# PORT_ALT='$portAlt'
+# AMB="'$AMB'"' >> ./.env
 
 ############
 
 yarn initInstall
-
-echo "Instalação Concluida com Sucesso!"
+echo "----------------------------------------------------------------"
+echo "----------------------------------------------------------------"
+echo "---------------Instalação Concluida com Sucesso!----------------"
 echo "----------------------------------------------------------------"
 echo "----------------------------------------------------------------"
 echo "RECOMENDO EXCLUIR A PASTA INSTALL!!!!"
@@ -36,9 +41,8 @@ echo ""
 echo "RECOMENDO EXCLUIR A PASTA INSTALL!!!!"
 echo "----------------------------------------------------------------"
 echo "----------------------------------------------------------------"
-
 echo ""
-echo "----------------------------------------------------------------"
+echo "----------------------------[ROTAS]-----------------------------"
 echo ""
 echo "Cadastra novo usuario no banco [POST]: https://localhost:"$portAlt"/<USERNAME_GITHUB>"
 echo "Consulta todos os usuario salvos no banco [GET]: https://localhost:"$portAlt"/users"
@@ -48,3 +52,4 @@ echo "TODOS OS DETALHES DA API CONSTA NA COLLACTION CRIADA NO POSTMAN: https://w
 echo ""
 echo "----------------------------------------------------------------"
 
+node ./build/index.js
