@@ -8,8 +8,26 @@ export function err400(req,res){
         "text" : "A rota que está tentando acessar não é permitida, você pode está verificando nossa collaction do postman para ver os Urls Validos Aqui: https://www.postman.com/lunar-equinox-820031/workspace/lovelystay-test/collection/18839016-3acbdc7a-b5ab-477d-9865-93a201c5ee5d?action=share&creator=18839016"
     })
 }
-export function deleteUser(req,res){
-
+export async function deleteUser(req,res){
+    var user =false;
+    if(req.params.user){
+        user = req.params.user;
+    }
+        const rowCount = await UserModel.getUsers(true, user);
+        if( rowCount[0]?.length == 0){
+            res.status(208)
+            res.json({
+                'status' : 404,
+                'text'   : 'Usuario não encontrado'
+            });
+        }else{
+            await UserModel.deleteUser(true, user);
+            res.status(200)
+            res.json({
+                'code':200,
+                'text': 'Usuario deletado com sucesso'
+            });
+        }
 }
 export async function storeUser(req,res){
     var user  = req.params.user;

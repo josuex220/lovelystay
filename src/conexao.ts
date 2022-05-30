@@ -32,5 +32,3 @@ const connection: any = {
     password: dotenv.parsed.PASS
 }
 export const db: IDatabase<any> = pgp(connection);
-
-// module.exports = db;
