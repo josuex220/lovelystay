@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "initInstall": "nodemon ./install/CreateDB.ts",
-    "build": "sucrase ./src -d ./dist --transforms typescript,imports"
+    "build": "sucrase ./src -d ./build --transforms typescript,imports",
+    "buildInstall": "sucrase ./install -d ./build-install --transforms typescript,imports"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",

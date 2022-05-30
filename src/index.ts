@@ -9,7 +9,7 @@ const app = express();
 app.get('/user/:user', Routes.getUser);
 app.get('/users', Routes.getUser);
 app.post('/user/:user', Routes.storeUser);
-app.get('/delete/:user', Routes.deleteUser);
+app.delete('/user/:user', Routes.deleteUser);
 app.get('*', Routes.err400);
 
 var port = dotenv.parsed.PORT_ALT;
