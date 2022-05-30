@@ -5,7 +5,7 @@
 ## Requisitos 
 * PostgreSQL;
 * Yarn
-* Node >= 13+
+* Node >= 14+
 
 ## Recomendação
  *No Windows <strong>GIT BASH</strong>
