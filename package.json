@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:josuex220/lovelystay.git",
-  "author": "Josue Vidal <vidalx220@gmail.com>",
+  "author": "Josue Vidal <josuex220@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
