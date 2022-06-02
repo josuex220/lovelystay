@@ -30,6 +30,18 @@
       PS: Banco de dados e tabelas serão criadas automaticamente
    </pre>
   </div>
+# Iniciar
+<blockquote>
+  <p>WINDOWS, Linux, MacOS:</p>
+</blockquote>
+ <div class="highlight highlight-source-shell">
+    <pre>
+      $ sh ./init.sh
+      OU
+      $ cd /build
+      $ node index.js
+   </pre>
+  </div>
 
  
   
