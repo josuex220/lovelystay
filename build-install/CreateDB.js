@@ -1,8 +1,8 @@
-import {dbS} from './conexao';
-import {db} from './conexao_completa';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _conexao = require('./conexao');
+var _conexao_completa = require('./conexao_completa');
 const dotenv = require('dotenv').config({ path: __dirname+'/../.env' });
 
-export function CreateDB(){
+ function CreateDB(){
     
     var sqlDb = [];
     sqlDb.push(`
@@ -55,11 +55,11 @@ export function CreateDB(){
     `);
 
     for (let i = 0; i < sqlDb.length; i++) {
-        dbS.query(sqlDb[i]).then((result)=>{
+        _conexao.dbS.query(sqlDb[i]).then((result)=>{
             //Após Criado o Banco Vamos Criar a tabela.
             setTimeout(function(){
                 for (let t = 0; t < Tables.length; t++) {
-                    db.query(Tables[t]).then((resp)=>{
+                    _conexao_completa.db.query(Tables[t]).then((resp)=>{
                         console.log("Seu Banco de dados está pronto para ser usado");
                         process.exit();
                     });
@@ -68,4 +68,4 @@ export function CreateDB(){
         });
     }
 
-}
+} exports.CreateDB = CreateDB;
