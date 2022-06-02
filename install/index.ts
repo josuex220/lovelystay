@@ -1,4 +1,4 @@
-import {dbS} from './conexao';
+import {dbS3} from './conexao';
 import inquirer from 'inquirer';
 import {CreateDB} from './CreateDB';
 import colors from 'colors';
@@ -17,7 +17,7 @@ export async function install(){
     
 }
 async function checkConnection(){
-    return await dbS.any(`SELECT 1 as total FROM pg_database WHERE datname='${dotenv.parsed.DB}'`);
+    return await dbS3.any(`SELECT 1 as total FROM pg_database WHERE datname='${dotenv.parsed.DB}'`);
 }
 
 function welcome(){
