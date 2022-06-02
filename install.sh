@@ -18,3 +18,7 @@ echo "-----------------ESTAMOS INICIANDO A APLICAÇÃO------------------"
 echo "-----------------ESTAMOS INICIANDO A APLICAÇÃO------------------"
 
 node ./build/index.js
+
+echo "-----------------PRONTO PARA INICIAR VOCÊ PODE ESTA ABRINDO O init.sh OU node ./build/index.js------------------"
+
+sleep 15
