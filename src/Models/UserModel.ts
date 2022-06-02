@@ -126,7 +126,7 @@ export async function store(debug=false, user:any = []){
 
 }
 
-export async function getUsers(debug=false,user_id_or_username:any = false, fields = []){
+export async function getUsers(debug=false,user_id_or_username:any = false, fields = [],location=0){
     var field = "";
     var where = "";
     var sql = "";
@@ -138,14 +138,17 @@ export async function getUsers(debug=false,user_id_or_username:any = false, fiel
     }
     
     user_id_or_username = escapeHtml(user_id_or_username);
-    
-    if(user_id_or_username && user_id_or_username != 'false'){
-        if(/^[0-9]+$/.test(user_id_or_username)){
-            where = `WHERE id_github='${user_id_or_username}'`;
-        }else{
-            where = `WHERE login LIKE '%${user_id_or_username}%'`;
+    if(location == 0){
+        if(user_id_or_username && user_id_or_username != 'false'){
+            if(/^[0-9]+$/.test(user_id_or_username)){
+                where = `WHERE id_github='${user_id_or_username}'`;
+            }else{
+                where = `WHERE login LIKE '%${user_id_or_username}%'`;
+            }
+            
         }
-        
+    }else if(location == 1){
+            where  = `WHERE location LIKE '%${user_id_or_username}%'`;
     }
 
     sql = `SELECT ${field} FROM ${defaultTable} ${where}`;

@@ -1,71 +1,64 @@
 import fetch from "node-fetch";
 import * as UserModel from '../Models/UserModel';
 
-export function err400(req,res){
-    return res.status(400).json({
-        'code' : 400,
-        "text" : "A rota que está tentando acessar não é permitida, você pode está verificando nossa collaction do postman para ver os Urls Validos Aqui: https://www.postman.com/lunar-equinox-820031/workspace/lovelystay-test/collection/18839016-3acbdc7a-b5ab-477d-9865-93a201c5ee5d?action=share&creator=18839016"
-    })
-}
-export async function deleteUser(req,res){
-    var user =false;
-    if(req.params.user){
-        user = req.params.user;
-    }
+export async function deleteUser(user){
         const rowCount = await UserModel.getUsers(false, user);
-        if( rowCount[0]?.length == 0){
-            return res.status(404).json({
-                'status' : 404,
+        if( rowCount?.length == 0){
+            return {
+                'code' : 404,
                 'text'   : 'Usuario não encontrado'
-            });
+            };
         }else{
             await UserModel.deleteUser(false, rowCount[0]?.id_github);
-            return res.status(200).json({
+            return {
                 'code':200,
                 'text': 'Usuario deletado com sucesso'
-            });
+            };
         }
 }
-export async function storeUser(req,res){
-    var user  = req.params.user;
-    
+export async function storeUser(user){ 
     const response = await fetch(`https://api.github.com/users/${user}`);
     const respApi = await response.json();
 
     if(!respApi?.id){
-        return res.status(404).json({
+        return {
             'code' : 404,
             'text' : 'Usuario não encontrado no github'
-        });
+        };
     }else{
         const rowCount = await UserModel.getUsers(false, respApi?.login , ['COUNT(*) as rowcount']);
         if( rowCount[0]?.rowcount == 0){
             UserModel.store(false,respApi);
+            return {
+                'code' : 200,
+                'text'   : `O usuario ${respApi?.login} foi encontrado e salvo no banco de dados`
+            };
         }else{
-            return res.status(208).json({
-                'status' : 208,
+            return {
+                'code' : 208,
                 'text'   : 'Esse usuario já consta em nosso banco de dados'
-            });
+            };
         }
-        return res.status(200).json({
-            'status' : 200,
+        return {
+            'code' : 200,
             'text'   : 'Usuario Salvo em banco de dados com sucesso'
-        });
+        };
     }
 }
-export async function getUser(req,res){
+export async function getUser(us = false, type=0){
     var user =false;
-    if(req.params.user){
-        user = req.params.user;
+    if(us){
+        user = us;
     }
-        const rowCount = await UserModel.getUsers(true, user);
+    
+        const rowCount = await UserModel.getUsers(false, user, [], type);
         if( rowCount[0]?.length == 0){
-            return res.status(404).json({
-                'status' : 404,
+            return {
+                'code' : 404,
                 'text'   : 'Usuario não encontrado'
-            });
+            };
         }else{
-            return res.status(200).json(rowCount);
+            return rowCount;
         }
 }
 

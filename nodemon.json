@@ -1,11 +1,11 @@
 {
     "watch": [
-        "src"
+        "src",
+        "install"
     ],
     "ext": "ts",
     "execMap": {
         "ts": [
-            "sucrase-node ./install/CreateDB.ts",
             "sucrase-node ./src/index.ts"
         ]
     }
