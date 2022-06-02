@@ -31,4 +31,3 @@ const connection: any = {
     password: dotenv.parsed.PASS
 }
 export const dbS: IDatabase<any> = pgp(connection);
-export const dbS3: IDatabase<any> = pgp(connection);
