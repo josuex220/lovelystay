@@ -7,7 +7,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
-    "initInstall": "node ./build-install/CreateDB.js",
     "build": "sucrase ./src -d ./build --transforms typescript,imports",
     "buildInstall": "sucrase ./install -d ./build-install --transforms typescript,imports"
   },

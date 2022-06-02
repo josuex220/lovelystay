@@ -8,9 +8,9 @@ import figlet from 'figlet';
 
 export async function install(){
     welcome();
-    
+
     checkConnection().then(async (result) => {
-        if(await !result[0]?.total){  
+        if(await !result[0]){  
             TerminalInstall();
         }
     });
