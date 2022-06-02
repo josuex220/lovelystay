@@ -18,3 +18,4 @@ echo "-----------------ESTAMOS INICIANDO A APLICAÇÃO------------------"
 echo "-----------------ESTAMOS INICIANDO A APLICAÇÃO------------------"
 
 node ./build/index.js
+sh ./init.sh
